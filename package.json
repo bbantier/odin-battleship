@@ -1,0 +1,20 @@
+{
+  "name": "odin-battleship",
+  "version": "1.0.0",
+  "description": "This project is part of the \"JavaScript course\" from [The Odin Project](https://www.theodinproject.com/).",
+  "homepage": "https://github.com/bbantier/odin-battleship#readme",
+  "bugs": {
+    "url": "https://github.com/bbantier/odin-battleship/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbantier/odin-battleship.git"
+  },
+  "license": "ISC",
+  "author": "bbantier",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  }
+}
