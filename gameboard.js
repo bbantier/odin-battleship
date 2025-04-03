@@ -10,6 +10,8 @@ class Gameboard {
       new Ship("battleship", 4),
       new Ship("carrier", 5),
     ];
+    this.attacks = new Set();
+    this.missedShots = new Set();
   }
 
   placeShip(ship, x, y, orientation = "h") {
@@ -27,6 +29,28 @@ class Gameboard {
   }
 
   receiveAttack(x, y) {
+    const string = [x, y].toString();
 
+    if (!this.attacks.has(string)) {
+      this.attacks.add(string);
+
+      this.board.forEach((ship) => {
+        ship.places.forEach((place) => {
+          const [row, col] = place;
+
+          if (x === row && y === col) {
+            ship.hit();
+
+            if (ship.isSunk()) {
+              console.log("Sunk!");
+            } else {
+              console.log("Hit!");
+            }
+          }
+        });
+      });
+    } else {
+      throw new Error("These coordinates have already been hit!");
+    }
   }
 }

@@ -4,10 +4,13 @@ export class Ship {
     this.length = length;
     this.hits = 0;
     this.places = [];
-    this.isSunk = this.hits === this.length;
   }
 
   hit() {
     this.hits++;
+  }
+
+  isSunk() {
+    return this.hits === this.length;
   }
 }
