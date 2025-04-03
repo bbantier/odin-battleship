@@ -11,7 +11,6 @@ class Gameboard {
       new Ship("carrier", 5),
     ];
     this.attacks = new Set();
-    this.missedShots = new Set();
   }
 
   placeShip(ship, x, y, orientation = "h") {
@@ -52,5 +51,11 @@ class Gameboard {
     } else {
       throw new Error("These coordinates have already been hit!");
     }
+  }
+
+  allSunk() {
+    return (
+      this.board.filter((ship) => ship.isSunk()).length === this.board.length
+    );
   }
 }
