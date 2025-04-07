@@ -6,4 +6,5 @@ const game = (() => {
   const playerTwo = new Player("Computer");
 
   playerOne.board.render();
+  playerTwo.board.render();
 })();

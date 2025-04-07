@@ -35,11 +35,15 @@ html {
 
 .main {
   padding: var(--general-padding);
+  display: flex;
+  justify-content: space-around;
+  gap: var(--general-padding);
 }
 
 .board-container {
   width: 500px;
   height: 500px;
+  margin-top: 75px;
   background-color: white;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
