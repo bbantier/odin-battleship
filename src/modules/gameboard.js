@@ -58,4 +58,22 @@ export class Gameboard {
       this.board.filter((ship) => ship.isSunk()).length === this.board.length
     );
   }
+
+  render() {
+    const main = document.querySelector(".main");
+    const boardContainer = document.createElement("div");
+
+    boardContainer.classList = "board-container";
+
+    for (let x = 0; x <= 10; x++) {
+      for (let y = 0; y <= 10; y++) {
+        const boardCell = document.createElement("div");
+
+        boardCell.classList = "board-cell";
+        boardContainer.appendChild(boardCell);
+      }
+    }
+
+    main.appendChild(boardContainer);
+  }
 }
