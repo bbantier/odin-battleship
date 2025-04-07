@@ -1,4 +1,8 @@
-*, *::before, *::after {
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ruslan+Display&display=swap");
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,10 +10,24 @@
 
 :root {
   --regular-font: "Roboto", "Helvetica", "Tahoma", "Arial", sans-serif;
+  --title-font: "Ruslan Display", var(--regular-font);
+  --main-bg-color: #eff6fc;
+  --header-color: #467ca5;
+}
+
+html {
+  background-color: var(--main-bg-color);
 }
 
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 15px;
+  background-color: var(--header-color);
+}
+
+.page-title {
+  font-family: var(--title-font);
+  color: var(--main-bg-color);
 }
