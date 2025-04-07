@@ -13,11 +13,11 @@ export class Gameboard {
     this.attacks = new Set();
   }
 
-  placeShip(ship, x, y, orientation = "h") {
-    const shipToPlace = this.fleet.splice(ship, 1)[0];
+  placeShip(shipIndex, x, y, orientation = 1) { // Orientation: 1 for horizontal, 2 for vertical
+    const shipToPlace = this.fleet.splice(shipIndex, 1)[0];
 
     for (let i = x; i < shipToPlace.length + x; i++) {
-      if (orientation === "h") {
+      if (orientation === 1) {
         shipToPlace.places.push([x, i]);
       } else {
         shipToPlace.places.push([i, y]);
@@ -70,6 +70,7 @@ export class Gameboard {
         const boardCell = document.createElement("div");
 
         boardCell.classList = "board-cell";
+        boardCell.id = `board-cell-${x}-${y}`;
         boardContainer.appendChild(boardCell);
       }
     }

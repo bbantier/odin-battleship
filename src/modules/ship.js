@@ -13,4 +13,13 @@ export class Ship {
   isSunk() {
     return this.hits === this.length;
   }
+
+  render() {
+    this.places.forEach((place) => {
+      const [x, y] = place;
+      const cell = document.querySelector(`#board-cell-${x}-${y}`);
+
+      cell.classList.add("has-ship");
+    })
+  }
 }

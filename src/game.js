@@ -2,9 +2,21 @@ import "./game.css";
 import { Player } from "./modules/player";
 
 const game = (() => {
-  const playerOne = new Player("Player 1");
-  const playerTwo = new Player("Computer");
+  const player = new Player("Player");
+  const playerBoard = player.board;
+  const computer = new Player("Computer");
+  const computerBoard = computer.board;
 
-  playerOne.board.render();
-  playerTwo.board.render();
+  playerBoard.render();
+
+  playerBoard.placeShip(0, 0, 0, 2);
+  playerBoard.placeShip(0, 0, 1, 2);
+  playerBoard.placeShip(0, 0, 2, 2);
+  playerBoard.placeShip(0, 0, 3, 2);
+  playerBoard.placeShip(0, 0, 4, 2);
+
+  playerBoard.board.forEach((ship) => {
+    ship.render();
+  })
+  
 })();
