@@ -1,6 +1,6 @@
 import { Ship } from "./ship.js";
 
-class Gameboard {
+export class Gameboard {
   constructor() {
     this.board = [];
     this.fleet = [
