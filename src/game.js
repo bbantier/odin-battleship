@@ -9,14 +9,17 @@ const game = (() => {
 
   playerBoard.render();
 
-  playerBoard.placeShip(0, 0, 0, 2);
-  playerBoard.placeShip(0, 0, 1, 2);
-  playerBoard.placeShip(0, 0, 2, 2);
-  playerBoard.placeShip(0, 0, 3, 2);
-  playerBoard.placeShip(0, 0, 4, 2);
+  while (playerBoard.fleet.length > 0) {
+    const randomNumber = () => Math.floor(Math.random() * 9);
+    const randomOrientation = Math.floor(Math.random() * 2 + 1);
+    const randomCoord = [randomNumber(), randomNumber()];
+
+    console.log(randomCoord);
+
+    playerBoard.placeShip(0, randomCoord, randomOrientation);
+  }
 
   playerBoard.board.forEach((ship) => {
     ship.render();
-  })
-  
+  });
 })();

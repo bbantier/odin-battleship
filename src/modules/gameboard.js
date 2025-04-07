@@ -13,7 +13,7 @@ export class Gameboard {
     this.attacks = new Set();
   }
 
-  placeShip(shipIndex, x, y, orientation = 1) { // Orientation: 1 for horizontal, 2 for vertical
+  placeShip(shipIndex, [x, y], orientation = 1) { // Orientation: 1 for horizontal, 2 for vertical
     const shipToPlace = this.fleet.splice(shipIndex, 1)[0];
 
     for (let i = x; i < shipToPlace.length + x; i++) {
