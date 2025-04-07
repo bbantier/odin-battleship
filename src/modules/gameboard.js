@@ -65,8 +65,8 @@ export class Gameboard {
 
     boardContainer.classList = "board-container";
 
-    for (let x = 0; x <= 10; x++) {
-      for (let y = 0; y <= 10; y++) {
+    for (let x = 0; x < 10; x++) {
+      for (let y = 0; y < 10; y++) {
         const boardCell = document.createElement("div");
 
         boardCell.classList = "board-cell";

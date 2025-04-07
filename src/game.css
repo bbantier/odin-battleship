@@ -13,6 +13,7 @@
   --title-font: "Ruslan Display", var(--regular-font);
   --main-bg-color: #eff6fc;
   --header-color: #467ca5;
+  --general-padding: 15px;
 }
 
 html {
@@ -23,11 +24,31 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: var(--general-padding);
   background-color: var(--header-color);
 }
 
 .page-title {
   font-family: var(--title-font);
   color: var(--main-bg-color);
+}
+
+.main {
+  padding: var(--general-padding);
+}
+
+.board-container {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.board-cell {
+  border: 1px dashed #afafaf;
+}
+
+.board-cell:hover {
+  background-color: #dfdfdf;
 }
