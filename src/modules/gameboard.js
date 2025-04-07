@@ -13,8 +13,19 @@ export class Gameboard {
     this.attacks = new Set();
   }
 
-  placeShip(shipIndex, [x, y], orientation = 1) { // Orientation: 1 for horizontal, 2 for vertical
-    const shipToPlace = this.fleet.splice(shipIndex, 1)[0];
+  placeShip(shipIndex, [x, y], orientation) {
+    // Orientation: 1 for horizontal, 2 for vertical
+    const shipToPlace = this.fleet[shipIndex];
+
+    if (x + shipToPlace.length > 9) {
+      this.placeShip(shipIndex, [x - 1, y], orientation);
+      return;
+    }
+
+    if (y + shipToPlace.length > 9) {
+      this.placeShip(shipIndex, [x, y - 1], orientation);
+      return;
+    }
 
     for (let i = x; i < shipToPlace.length + x; i++) {
       if (orientation === 1) {
@@ -24,7 +35,21 @@ export class Gameboard {
       }
     }
 
+    for (const newPlace of shipToPlace.places) {
+      const [newX, newY] = newPlace;
+      for (const ship of this.board) {
+        for (const place of ship.places) {
+          const [oldX, oldY] = place;
+          if (oldX === newX && oldY === newY) {
+            while (shipToPlace.places > 0) shipToPlace.places.pop();
+            return;
+          }
+        }
+      }
+    }
+
     this.board.push(shipToPlace);
+    this.fleet.splice(shipIndex, 1);
   }
 
   receiveAttack(x, y) {
