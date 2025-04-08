@@ -14,42 +14,47 @@ export class Gameboard {
   }
 
   placeShip(shipIndex, [x, y], orientation) {
-    // Orientation: 1 for horizontal, 2 for vertical
-    const shipToPlace = this.fleet[shipIndex];
+    const newShip = this.fleet[shipIndex];
 
-    if (x + shipToPlace.length > 9) {
-      this.placeShip(shipIndex, [x - 1, y], orientation);
-      return;
+    if (orientation === 1 && x + newShip.length > 9) {
+      return this.placeShip(shipIndex, [x - 1, y], orientation);
+    }
+    if (orientation === 2 && y + newShip.length > 9) {
+      return this.placeShip(shipIndex, [x, y - 1], orientation);
     }
 
-    if (y + shipToPlace.length > 9) {
-      this.placeShip(shipIndex, [x, y - 1], orientation);
-      return;
-    }
-
-    for (let i = x; i < shipToPlace.length + x; i++) {
+    const tempPlaces = [];
+    for (let i = 0; i < newShip.length; i++) {
       if (orientation === 1) {
-        shipToPlace.places.push([x, i]);
+        tempPlaces.push([x + i, y]);
       } else {
-        shipToPlace.places.push([i, y]);
+        tempPlaces.push([x, y + i]);
       }
     }
 
-    for (const newPlace of shipToPlace.places) {
-      const [newX, newY] = newPlace;
-      for (const ship of this.board) {
-        for (const place of ship.places) {
-          const [oldX, oldY] = place;
-          if (oldX === newX && oldY === newY) {
-            while (shipToPlace.places > 0) shipToPlace.places.pop();
-            return;
-          }
+    for (const ship of this.board) {
+      for (const oldPlace of ship.places) {
+        if (
+          tempPlaces.some((newPlace) => {
+            return newPlace[0] === oldPlace[0] && newPlace[1] === oldPlace[1];
+          })
+        ) {
+          const newCoords = [
+            Math.floor(Math.random() * 9),
+            Math.floor(Math.random() * 9),
+          ];
+          return this.placeShip(shipIndex, newCoords, orientation);
         }
       }
     }
 
-    this.board.push(shipToPlace);
+    newShip.places = tempPlaces;
+    this.board.push(newShip);
     this.fleet.splice(shipIndex, 1);
+
+    if (this.board.length === 5) {
+      console.log(this.board);
+    }
   }
 
   receiveAttack(x, y) {

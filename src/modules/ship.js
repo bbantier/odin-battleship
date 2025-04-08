@@ -20,6 +20,7 @@ export class Ship {
       const cell = document.querySelector(`#board-cell-${x}-${y}`);
 
       cell.classList.add("has-ship");
+      cell.textContent = this.length;
     })
   }
 }
